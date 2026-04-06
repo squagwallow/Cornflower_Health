@@ -57,8 +57,13 @@ def normalize(payload: list[dict], target_date: str | None = None) -> dict[str, 
     """
 
     # --- Build metric lookup dict: name → data list ---
+    # HAE sends either a dict {"data": {"metrics": [...]}} (live webhook)
+    # or a list [{"data": {"metrics": [...]}}] (historical export / older format).
     try:
-        metrics_list = payload[0]["data"]["metrics"]
+        if isinstance(payload, list):
+            metrics_list = payload[0]["data"]["metrics"]
+        else:
+            metrics_list = payload["data"]["metrics"]
     except (IndexError, KeyError, TypeError) as exc:
         logger.error("Cannot parse payload structure: %s", exc)
         return {}

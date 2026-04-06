@@ -1,0 +1,1180 @@
+{
+  "data": {
+    "metrics": [
+      {
+        "units": "degF",
+        "data": [
+          {
+            "date": "2026-03-29 00:00:00 -0600",
+            "qty": 97.51367874145501,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 98.51838531494134
+          },
+          {
+            "qty": 97.38720550537103,
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 97.52015380859368
+          },
+          {
+            "qty": 97.66989059448235,
+            "date": "2026-04-02 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 97.7732719421386
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 97.5890518188476,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 99.4257736206054
+          }
+        ],
+        "name": "apple_sleeping_wrist_temperature"
+      },
+      {
+        "data": [
+          {
+            "qty": 87,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-30 00:00:00 -0600"
+          },
+          {
+            "qty": 95,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 68,
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 86,
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 124,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "qty": 105,
+            "date": "2026-04-04 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "qty": 129,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ],
+        "name": "apple_stand_time",
+        "units": "min"
+      },
+      {
+        "name": "apple_exercise_time",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 32,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 54
+          },
+          {
+            "date": "2026-04-01 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 25
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 7
+          },
+          {
+            "qty": 38,
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "qty": 26,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 66,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          }
+        ],
+        "units": "min"
+      },
+      {
+        "name": "atrial_fibrillation_burden",
+        "data": [
+          {
+            "qty": 1.9999999552965164,
+            "date": "2026-03-23 00:00:00 -0600",
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 1.9999999552965164,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-30 00:00:00 -0600"
+          }
+        ],
+        "units": "%"
+      },
+      {
+        "units": "count/min",
+        "name": "cardio_recovery",
+        "data": [
+          {
+            "qty": 48.06363802823153,
+            "date": "2026-03-30 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 48.06363802823153
+          },
+          {
+            "qty": 48.06363802823153,
+            "date": "2026-04-05 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 2,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 2
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 2,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 6
+          }
+        ],
+        "units": "count",
+        "name": "flights_climbed"
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 406.28200000000004,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 443.5140000000036,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 392.7810000000025
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 329.4199999999999
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 495.0870000000051
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 476.64900000002564,
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 610.0860000000032
+          }
+        ],
+        "name": "active_energy",
+        "units": "kcal"
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "Min": 48.40922164916992,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "Avg": 76.04408808920257,
+            "Max": 133
+          },
+          {
+            "Max": 125.00000000000001,
+            "Min": 51,
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "Avg": 76.27074399108328
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "Min": 51,
+            "date": "2026-04-01 00:00:00 -0600",
+            "Max": 139,
+            "Avg": 76.04119300647902
+          },
+          {
+            "Avg": 73.45790914833367,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "Max": 131,
+            "date": "2026-04-02 00:00:00 -0600",
+            "Min": 52
+          },
+          {
+            "Min": 47,
+            "Avg": 78.58842718539071,
+            "Max": 152,
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-04 00:00:00 -0600",
+            "Max": 134,
+            "Avg": 77.6854065826287,
+            "Min": 50
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "Avg": 87.04912334858682,
+            "date": "2026-04-05 00:00:00 -0600",
+            "Max": 148,
+            "Min": 53
+          }
+        ],
+        "name": "heart_rate",
+        "units": "count/min"
+      },
+      {
+        "name": "apple_stand_hour",
+        "units": "count",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 13,
+            "source": ""
+          },
+          {
+            "source": "",
+            "qty": 12,
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "qty": 16,
+            "date": "2026-04-01 00:00:00 -0600",
+            "source": ""
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 15,
+            "source": ""
+          },
+          {
+            "qty": 16,
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": ""
+          },
+          {
+            "source": "",
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 12
+          },
+          {
+            "source": "",
+            "qty": 13,
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 91.72222222222223,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 92.30434782608695,
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 92.94117647058823
+          },
+          {
+            "qty": 91.6470588235294,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "qty": 91.58823529411765,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 93.1,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 92.6,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          }
+        ],
+        "units": "%",
+        "name": "blood_oxygen_saturation"
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 48,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 109
+          },
+          {
+            "qty": 34,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 17,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 21
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 138,
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "qty": 121,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ],
+        "name": "time_in_daylight",
+        "units": "min"
+      },
+      {
+        "name": "vo2_max",
+        "units": "ml/(kg\u00b7min)",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 33.73,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 37.87,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 37.85,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "qty": 24.93,
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Athlytic"
+          },
+          {
+            "qty": 34.935,
+            "date": "2026-04-05 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic"
+          }
+        ]
+      },
+      {
+        "name": "step_count",
+        "units": "count",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 6303.95999098764,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 7704,
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 5490
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 5302.706813017503
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 8202.999999999998,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 7497
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 10605.514992299248,
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ]
+      },
+      {
+        "name": "resting_heart_rate",
+        "units": "count/min",
+        "data": [
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic",
+            "qty": 66.5,
+            "date": "2026-03-30 00:00:00 -0600"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 64.5,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 66,
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "qty": 65,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "qty": 66.5,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic",
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 68,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 67.5,
+            "source": "Jonathan\u2019s Apple\u00a0Watch | Athlytic"
+          }
+        ]
+      },
+      {
+        "name": "environmental_audio_exposure",
+        "units": "dBASPL",
+        "data": [
+          {
+            "qty": 60.86146060026028,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-29 00:00:00 -0600"
+          },
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 67.5032227895925,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 65.69684431050335,
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 66.33468021119076
+          },
+          {
+            "qty": 67.73324162071431,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 66.75211511415336
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 65.41115372565378,
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "qty": 68.59663232250179,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ]
+      },
+      {
+        "name": "walking_running_distance",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 3.148069212798846,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 3.6104236192801555,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 2.783983409254738,
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "qty": 2.6520807267250603,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 3.9747939181527454,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 3.595237990291992,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 6.420607391180115,
+            "source": "Jonathan\u2019s Apple\u00a0Watch|\ud83d\udc96\u2728\ud83d\udcab"
+          }
+        ],
+        "units": "mi"
+      },
+      {
+        "units": "hr",
+        "data": [
+          {
+            "inBed": 0,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "core": 3.4278103392985133,
+            "deep": 1.605216395292017,
+            "sleepEnd": "2026-03-30 04:31:32 -0600",
+            "awake": 0.04180497497320175,
+            "totalSleep": 6.387438913053936,
+            "asleep": 0,
+            "sleepStart": "2026-03-29 22:05:47 -0600",
+            "inBedStart": "2026-03-29 22:05:47 -0600",
+            "inBedEnd": "2026-03-30 04:31:32 -0600",
+            "date": "2026-03-30 00:00:00 -0600",
+            "rem": 1.354412178463406
+          },
+          {
+            "rem": 1.713959788315826,
+            "sleepEnd": "2026-03-31 06:01:26 -0600",
+            "inBed": 0,
+            "core": 5.275601798461543,
+            "inBedEnd": "2026-03-31 06:01:26 -0600",
+            "totalSleep": 8.260432255963483,
+            "sleepStart": "2026-03-30 21:36:47 -0600",
+            "inBedStart": "2026-03-30 21:36:47 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-31 00:00:00 -0600",
+            "awake": 0.15049419624937904,
+            "asleep": 0,
+            "deep": 1.2708706691861151
+          },
+          {
+            "rem": 1.780857737892204,
+            "date": "2026-04-01 00:00:00 -0600",
+            "totalSleep": 7.457789199550946,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "inBedEnd": "2026-04-01 05:17:24 -0600",
+            "inBed": 0,
+            "sleepStart": "2026-03-31 21:30:22 -0600",
+            "core": 4.815768409735626,
+            "sleepEnd": "2026-04-01 05:17:24 -0600",
+            "awake": 0.32606574972470603,
+            "deep": 0.861163051923116,
+            "inBedStart": "2026-03-31 21:30:22 -0600",
+            "asleep": 0
+          },
+          {
+            "deep": 0.509981101817555,
+            "sleepEnd": "2026-04-02 04:19:32 -0600",
+            "date": "2026-04-02 00:00:00 -0600",
+            "core": 4.748956095841196,
+            "inBedStart": "2026-04-01 21:55:46 -0600",
+            "rem": 0.9949479091829724,
+            "inBed": 0,
+            "inBedEnd": "2026-04-02 04:19:32 -0600",
+            "totalSleep": 6.253885106841723,
+            "sleepStart": "2026-04-01 21:55:46 -0600",
+            "awake": 0.14212947113646404,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "asleep": 0
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "core": 3.962965897123019,
+            "sleepStart": "2026-04-02 21:28:58 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "asleep": 0,
+            "rem": 1.412940194176303,
+            "totalSleep": 6.462785797715187,
+            "inBedStart": "2026-04-02 21:28:58 -0600",
+            "inBedEnd": "2026-04-03 04:10:17 -0600",
+            "deep": 1.086879706415865,
+            "inBed": 0,
+            "awake": 0.22573997222714953,
+            "sleepEnd": "2026-04-03 04:10:17 -0600"
+          },
+          {
+            "asleep": 0,
+            "sleepStart": "2026-04-03 21:09:30 -0600",
+            "sleepEnd": "2026-04-04 05:05:03 -0600",
+            "deep": 1.153771305150456,
+            "date": "2026-04-04 00:00:00 -0600",
+            "inBed": 0,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "inBedEnd": "2026-04-04 05:05:03 -0600",
+            "rem": 1.9480007120966913,
+            "totalSleep": 7.541250573496024,
+            "inBedStart": "2026-04-03 21:09:30 -0600",
+            "awake": 0.384585039847427,
+            "core": 4.4394785562488766
+          },
+          {
+            "totalSleep": 6.537360689441363,
+            "inBed": 0,
+            "rem": 1.3142187190386985,
+            "inBedStart": "2026-04-04 21:51:21 -0600",
+            "core": 4.746019076671866,
+            "awake": 0.1254988591538535,
+            "date": "2026-04-05 00:00:00 -0600",
+            "sleepStart": "2026-04-04 21:51:21 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "asleep": 0,
+            "sleepEnd": "2026-04-05 04:31:08 -0600",
+            "deep": 0.47712289373079936,
+            "inBedEnd": "2026-04-05 04:31:08 -0600"
+          }
+        ],
+        "name": "sleep_analysis"
+      },
+      {
+        "name": "walking_heart_rate_average",
+        "units": "count/min",
+        "data": [
+          {
+            "qty": 113,
+            "date": "2026-03-30 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 97
+          },
+          {
+            "qty": 102.5,
+            "date": "2026-04-01 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "qty": 108,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "qty": 106,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 84
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 112
+          }
+        ]
+      },
+      {
+        "name": "walking_asymmetry_percentage",
+        "units": "%",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 0,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 1.95
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 0.16666666666666666
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 0.14285714285714285,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 2.4,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 0.16666666666666666,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 0.45454545454545453
+          }
+        ]
+      },
+      {
+        "name": "six_minute_walking_test_distance",
+        "data": [
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 500,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          }
+        ],
+        "units": "m"
+      },
+      {
+        "units": "kcal",
+        "name": "basal_energy_burned",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 1758.72236819613,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 1766.3915195443856,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 1762.0587439609642
+          },
+          {
+            "qty": 1767.1470890946443,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "qty": 1789.0903146821856,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 1783.823517482819,
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 1811.839797055653,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 30.084615384615383,
+            "date": "2026-03-30 00:00:00 -0600"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 31.83793103448276
+          },
+          {
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 29.244444444444444,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 29.592307692307692,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 29.771428571428572,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 31.13913043478261,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 29.668421052631583,
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ],
+        "name": "walking_double_support_percentage",
+        "units": "%"
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 16.98,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 16.92156862745098
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 16.833333333333332
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 16.622222222222224,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 17.445652173913043,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 17.681818181818183
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 17.523255813953487
+          }
+        ],
+        "units": "count/min",
+        "name": "respiratory_rate"
+      },
+      {
+        "data": [
+          {
+            "qty": 1.1093312204666337,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600"
+          }
+        ],
+        "units": "ft/s",
+        "name": "stair_speed_down"
+      },
+      {
+        "name": "stair_speed_up",
+        "units": "ft/s",
+        "data": [
+          {
+            "qty": 1.2172652980474037,
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 1.0058772689088435,
+            "date": "2026-04-02 00:00:00 -0600"
+          }
+        ]
+      },
+      {
+        "units": "ms",
+        "name": "heart_rate_variability",
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 56.001549039884516,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-03-31 00:00:00 -0600",
+            "qty": 49.84665822776447
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 61.771584852715385
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 52.18272425460177,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 49.81650674259476,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 51.250303097523776,
+            "date": "2026-04-04 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 44.05909693426334,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          }
+        ]
+      },
+      {
+        "data": [
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 2.639584824624194
+          },
+          {
+            "qty": 2.2338508626860514,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "qty": 2.783742941223256,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "qty": 2.7101343538351403,
+            "date": "2026-04-02 00:00:00 -0600",
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 2.452241410164639,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 2.4203650680028637,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 2.7078113815318536,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-05 00:00:00 -0600"
+          }
+        ],
+        "units": "mi/hr",
+        "name": "walking_speed"
+      },
+      {
+        "data": [
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "qty": 27.892186553603874,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 27.28753733369536,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-01 00:00:00 -0600",
+            "qty": 29.746281714785653,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "qty": 26.83222289521502,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-02 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "qty": 27.559055118110237,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 28.220472440944885
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 28.838582677165363
+          }
+        ],
+        "name": "walking_step_length",
+        "units": "in"
+      },
+      {
+        "data": [
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 77.85072254220088,
+            "date": "2026-03-30 00:00:00 -0600"
+          },
+          {
+            "qty": 71.00135973823704,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-03-31 00:00:00 -0600"
+          },
+          {
+            "qty": 76.74245752582041,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "date": "2026-04-01 00:00:00 -0600"
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 79.9359290510376,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "source": "\ud83d\udc96\u2728\ud83d\udcab",
+            "qty": 76.07875363008934,
+            "date": "2026-04-03 00:00:00 -0600"
+          },
+          {
+            "qty": 75.36165092262438,
+            "date": "2026-04-04 00:00:00 -0600",
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 77.86985650514093,
+            "source": "\ud83d\udc96\u2728\ud83d\udcab"
+          }
+        ],
+        "name": "headphone_audio_exposure",
+        "units": "dBASPL"
+      },
+      {
+        "name": "physical_effort",
+        "units": "kcal/hr\u00b7kg",
+        "data": [
+          {
+            "date": "2026-03-29 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 1
+          },
+          {
+            "date": "2026-03-30 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 3.8009756358658393
+          },
+          {
+            "date": "2026-03-31 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 3.6484507261867254
+          },
+          {
+            "qty": 3.965071792807876,
+            "date": "2026-04-01 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-02 00:00:00 -0600",
+            "qty": 3.600000008086017,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          },
+          {
+            "date": "2026-04-03 00:00:00 -0600",
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "qty": 3.5921615328188463
+          },
+          {
+            "source": "Jonathan\u2019s Apple\u00a0Watch",
+            "date": "2026-04-04 00:00:00 -0600",
+            "qty": 3.6365914879586163
+          },
+          {
+            "date": "2026-04-05 00:00:00 -0600",
+            "qty": 3.6467289844777353,
+            "source": "Jonathan\u2019s Apple\u00a0Watch"
+          }
+        ]
+      }
+    ]
+  }
+}

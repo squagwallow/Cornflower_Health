@@ -12,19 +12,19 @@ This document is the ground-truth record of what has been confirmed, what has fa
 - HAE payload structure is nested JSON; some metric types (e.g., sleep analysis) contain arrays of sub-objects.
 
 ### Confirmed Source Metrics (Raw HAE Field Names)
-These fields have been identified in HAE output and are mapped to v1 internal fields:
+These fields have been verified from the real payload (`samples/hae_sample_2026-04-05.json`) and are mapped to v1 internal fields:
 
 | Raw HAE Metric Name | Payload Field Used |
 |---|---|
-| `heart_rate_variability` | `data[].qty` (ms) |
-| `resting_heart_rate` | `data[].qty` (bpm) |
-| `respiratory_rate` | `data[].qty` (count/min) |
-| `apple_sleeping_wrist_temperature` | `data[].qty` |
-| `blood_oxygen_saturation` | `data[].qty` (%) |
-| `heart_rate` | `Avg`, `Min`, `Max` (capitalization confirmed from thread testing; needs real-sample verification) |
-| `sleep_analysis` | `deep`, `rem`, `awake`, `sleepStart`, `sleepEnd` (key names assumed; needs real-sample verification) |
+| `heart_rate_variability` | `data[].qty` (ms) — verified |
+| `resting_heart_rate` | `data[].qty` (bpm) — verified |
+| `respiratory_rate` | `data[].qty` (count/min) — verified |
+| `apple_sleeping_wrist_temperature` | `data[].qty` (degF) — verified |
+| `blood_oxygen_saturation` | `data[].qty` (%, no conversion needed) — verified |
+| `heart_rate` | `Avg`, `Min`, `Max` (capital letters confirmed from real payload) — verified |
+| `sleep_analysis` | `deep`, `rem`, `core`, `awake`, `totalSleep`, `sleepStart`, `sleepEnd`, `inBedStart`, `inBedEnd` (values in hours, multiply by 60) — verified |
 
-Top-level payload structure confirmed from thread testing: `data.metrics[]` array.
+Top-level payload structure verified: `payload[0]["data"]["metrics"]` array.
 
 ### Confirmed Target
 - **Notion** is the confirmed destination database.
@@ -66,11 +66,11 @@ The database was audited on 2026-04-06 against `schema-plan.md`. Key findings:
 | `ingest_timestamp` | `created_time` (system field) | Replaced by auto-managed system field |
 
 ### Fields in v1 Plan Missing From Notion
-The following original v1 fields were not found in the deployed database and must be added:
+~~The following original v1 fields were not found in the deployed database and must be added:~~
 
-- `hr_day_min_bpm` — add via API PATCH
-- `hr_day_max_bpm` — add via API PATCH
-- `sleep_core_min` — add via API PATCH
+- `hr_day_min_bpm` — **Added 2026-04-06** (Task 0.3)
+- `hr_day_max_bpm` — **Added 2026-04-06** (Task 0.3)
+- `sleep_core_min` — **Added 2026-04-06** (Task 0.3)
 
 ### Phase 2 Fields Already Deployed
 The following fields were listed as Phase 2/future in the original schema plan but are already present in the Notion database:
@@ -130,25 +130,41 @@ The deployed database contains several layers of fields that were never in the o
 
 | Item | Status | Notes |
 |---|---|---|
-| Backend hosting environment | Undecided | Options: local Python, Vercel/Railway serverless, Fly.io, or VPS |
+| Backend hosting environment | **Decided — Render free tier** | Deployed 2026-04-06; `https://cornflower-health.onrender.com` |
 | HAE exact payload structure | **Confirmed — 2026-04-06** | Real payload captured in `samples/hae_sample_2026-04-05.json`. All field names, units, and nesting verified. |
 | HAE sleep-window HR segmentation | **Confirmed absent** | HAE does not segment heart rate by sleep window. `hr_sleep_avg_bpm` must be populated manually (from Bevel/Athlytic) or not at all. |
 | HAE awakening sub-events | **Confirmed absent** | HAE does not expose individual awakening events. `sleep_awakenings_count` and `sleep_longest_wake_min` are manual-only fields. |
 | Wrist temperature unit | **Confirmed — degF** | `apple_sleeping_wrist_temperature` is in degrees Fahrenheit. No conversion needed at ingest. |
 | SpO2 unit normalization | **Confirmed — no conversion needed** | `blood_oxygen_saturation` is already in percent (91–93 range in sample). Do NOT multiply by 100. |
-| Exact Notion formula expressions | Partially recovered | Several flag formulas exist in Notion but exact expressions not captured in docs. See `notion-api-notes.md` |
+| Exact Notion formula expressions | **Confirmed — all 13 formulas documented** | See `notion-api-notes.md` |
 | Rolling baseline computation logic | Not designed | 7d and 60d rolling averages for HRV, RHR, deep sleep need implementation design |
+
+---
+
+## Backend Pipeline Status
+
+**All Phase 1 tasks complete. Backend is deployed and live.**
+
+| Component | File | Status |
+|---|---|---|
+| Webhook endpoint | `src/webhook.py` | ✅ Live on Render |
+| Normalization layer | `src/normalize.py` | ✅ 29/29 tests passing |
+| Notion write layer | `src/notion_writer.py` | ✅ Idempotent upsert |
+| Integration tests | `tests/test_end_to_end.py` | ✅ 5/5 passing (37 total) |
+| Deployment | Render free tier | ✅ `https://cornflower-health.onrender.com` |
+| HAE configuration | Webhook URL + secret header | ✅ Configured on device |
 
 ---
 
 ## Known Gaps
 
-- ~~No sample HAE JSON payload has been saved~~ — **Resolved 2026-04-06.** Real payload saved to `samples/hae_sample_2026-04-05.json`.
-- No backend endpoint exists yet (not even a logging stub).
-- Three v1 fields from the original schema plan are missing from the Notion database: `hr_day_min_bpm`, `hr_day_max_bpm`, `sleep_core_min`.
-- Exact formula expressions for 8 of 10 flag formulas are not documented (they exist in Notion but were not captured in the repo during database creation).
-- The Notion integration token seen in thread reports is likely compromised. Regenerate before any further API use.
+- ~~No sample HAE JSON payload has been saved~~ — **Resolved 2026-04-06.**
+- ~~No backend endpoint exists yet~~ — **Resolved 2026-04-06.** Full pipeline deployed.
+- ~~Three v1 fields missing from Notion~~ — **Resolved 2026-04-06** (Task 0.3).
+- ~~Formula expressions not documented~~ — **Resolved 2026-04-06** (Task 0.2, all 13 formulas confirmed).
+- The Notion integration token seen in thread reports is likely compromised. Rotation planned post-MVP.
+- Awaiting first successful live HAE → Render → Notion sync to confirm end-to-end pipeline in production.
 
 ---
 
-*Last updated: 2026-04-06 — Updated with Notion database audit results (P3 from integration report). Corrected "Known Gaps" to reflect that the database exists. Added audit findings section.*
+*Last updated: 2026-04-06 — Updated to reflect Phase 0, Phase 1, and Task 3.1 completion. Backend deployed to Render. All known gaps resolved except token rotation and live pipeline verification.*
