@@ -1,9 +1,11 @@
 """
-Task 1.1 — Webhook Endpoint (Logging Stub)
+Task 1.1 + 1.4 — Webhook Endpoint with Full Pipeline
 Cornflower Health project — src/webhook.py
 
 Accepts HAE POST payloads, validates the shared secret, logs raw JSON to logs/,
-and returns HTTP 200. No Notion integration in this file (that is Task 1.3+).
+normalizes the payload, writes to Notion, and returns the outcome.
+
+Pipeline: POST /webhook → validate → log → normalize() → notion_writer.write()
 """
 
 import json
@@ -14,6 +16,9 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request, Response
+
+from normalize import normalize
+import notion_writer
 
 load_dotenv()
 
@@ -79,12 +84,39 @@ async def receive_webhook(request: Request) -> Response:
         logger.info("Payload logged to %s", log_path)
     except OSError as exc:
         logger.error("Failed to write payload log: %s", exc)
-        # Non-fatal — still return 200 so HAE doesn't retry
+        # Non-fatal — pipeline continues
 
+    # --- Normalize ---
+    try:
+        record = normalize(payload)
+    except Exception as exc:
+        logger.error("Normalization failed: %s", exc)
+        raise HTTPException(status_code=422, detail=f"Normalization error: {exc}") from exc
+
+    if not record:
+        logger.error("Normalization returned empty record — payload may be malformed")
+        raise HTTPException(status_code=422, detail="Normalization returned empty record")
+
+    # --- Write to Notion ---
+    result = notion_writer.write(record)
+
+    status_code = 200
+    if result["status"] == "error":
+        # Still return 200 to prevent HAE from retrying — the error is logged
+        logger.error("Notion write failed for %s: %s", result.get("date"), result.get("message"))
+
+    response_body = {
+        "status": result["status"],       # "written" | "skipped" | "error"
+        "date": result.get("date"),
+        "page_id": result.get("page_id"),
+        "logged_to": str(log_path),
+    }
+
+    logger.info("Pipeline complete — %s", result.get("message"))
     return Response(
-        content=json.dumps({"status": "received", "logged_to": str(log_path)}),
+        content=json.dumps(response_body),
         media_type="application/json",
-        status_code=200,
+        status_code=status_code,
     )
 
 
