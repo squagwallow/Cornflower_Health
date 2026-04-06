@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: cornflower-health
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon  # closest free-tier region to Denver
+    healthCheckPath: /health
+
+    envVars:
+      - key: NOTION_TOKEN
+        sync: false  # set manually in Render dashboard
+      - key: NOTION_DATABASE_ID
+        sync: false
+      - key: HAE_WEBHOOK_SECRET
+        sync: false
+      - key: LOG_LEVEL
+        value: INFO
