@@ -108,94 +108,81 @@ This is verbose but required. The inline approach was confirmed working via API 
 
 ## Confirmed Working Formula Definitions
 
-These formulas were successfully deployed to the database via API.
+All expressions below are **verified directly from the live Notion database via API (2026-04-06)**. No guesswork.
+
+Note on formula syntax: Notion's internal representation uses URL-encoded property reference tokens. The expressions below have been decoded to use human-readable `prop("field_name")` syntax — this is the format you must use when writing new formulas via API PATCH.
 
 ### `sleep_efficiency_pct`
 ```
 round((prop("sleep_time_asleep_min") / prop("sleep_time_in_bed_min")) * 100)
 ```
-Note: The repo integration report uses `sleep_total_min` as the numerator, but the Notion field is `sleep_time_asleep_min`. Verify the correct interpretation (total sleep vs. time asleep) against a real payload before finalizing.
 
 ### `hr_dip_pct`
 ```
-round(((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100)
+round((((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100) * 10) / 10
 ```
-Returns 0 if `hr_day_avg_bpm` is 0. Add null guard in production: `if(prop("hr_day_avg_bpm") == 0, 0, round(...))`.
+Note: rounds to 1 decimal place (×10 then /10 trick).
 
 ### `hr_dip_category`
-Inline computation — no formula-to-formula reference:
+Inline computation — no formula-to-formula reference. Categories: Normal (≥15%), Borderline (10–14%), Non-dipping (<10%):
 ```
-if(prop("hr_day_avg_bpm") == 0, "No data", if(round(((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100) >= 15, "Normal dipper", if(round(((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100) >= 10, "Borderline", "Non-dipping")))
+if(round(((((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100) * 10) / 10) >= 15, "Normal", if(round(((((prop("hr_day_avg_bpm") - prop("hr_sleep_avg_bpm")) / prop("hr_day_avg_bpm")) * 100) * 10) / 10) >= 10, "Borderline", "Non-dipping"))
 ```
-
-### `flag_deep_sleep_low`
-Exact definition not yet recovered from thread. Known threshold: `sleep_deep_min < 35`. Probable formula:
-```
-prop("sleep_deep_min") < 35
-```
-**Status: needs verification from thread or real formula inspection.**
-
-### `flag_deep_gate_50`
-Known threshold: `sleep_deep_min < 50`. Probable formula:
-```
-prop("sleep_deep_min") < 50
-```
-**Status: needs verification.**
-
-### `flag_rhr_elevated`
-Known threshold: `rhr_bpm > 68`. Probable formula:
-```
-prop("rhr_bpm") > 68
-```
-**Status: needs verification.**
-
-### `flag_hrv_very_low`
-Known threshold: `hrv_sdnn_ms < 40`. Probable formula:
-```
-prop("hrv_sdnn_ms") < 40
-```
-**Status: needs verification.**
-
-### `flag_recovery_red_gate`
-Hard gate: HRV < 40 AND deep < 35. Probable formula:
-```
-and(prop("hrv_sdnn_ms") < 40, prop("sleep_deep_min") < 35)
-```
-**Status: needs verification.**
-
-### `flag_resp_rate_high`
-Known threshold: `resp_rate_brpm >= 19`. Probable formula:
-```
-prop("resp_rate_brpm") >= 19
-```
-**Status: needs verification.**
-
-### `flag_spo2_low`
-Known threshold: SpO2 below acceptable range. Probable formula:
-```
-prop("spo2_avg_pct") < 0.92
-```
-Note: `spo2_avg_pct` is stored as `percent` number format in Notion. Verify whether the formula compares against decimal (0.92) or percent (92) depending on how Notion formula engine interprets the stored value.
-
-### `flag_sleep_fragmented`
-Known trigger: high awakening count or awake time. Probable formula:
-```
-or(prop("sleep_awakenings_count") >= 4, prop("sleep_awake_min") >= 60)
-```
-**Status: needs verification.**
-
-### `flag_early_wake`
-Known trigger: wake time before approximately 5:00 AM. Uses `sleep_waketime_num` (minutes after midnight):
-```
-and(prop("sleep_waketime_num") > 0, prop("sleep_waketime_num") <= 300)
-```
-**Status: needs verification.**
 
 ### `day_of_week`
 ```
 formatDate(prop("date"), "dddd")
 ```
-**Status: confirmed deployed.**
+
+### `flag_deep_sleep_low`
+```
+prop("sleep_deep_min") < 35
+```
+
+### `flag_deep_gate_50`
+```
+prop("sleep_deep_min") < 50
+```
+
+### `flag_hrv_very_low`
+```
+prop("hrv_sdnn_ms") < 40
+```
+
+### `flag_rhr_elevated`
+```
+prop("rhr_bpm") > 68
+```
+
+### `flag_resp_rate_high`
+```
+prop("resp_rate_brpm") > 18
+```
+Note: threshold is `> 18` (not `>= 19` as documented in coaching-layer.md — these are equivalent for integers but the formula uses strict greater-than 18).
+
+### `flag_spo2_low`
+```
+prop("spo2_min_pct") < 90
+```
+Note: uses `spo2_min_pct` (nightly minimum), not `spo2_avg_pct`. Threshold is 90, not 92. Update `coaching-layer.md` scoring modifiers accordingly.
+
+### `flag_sleep_fragmented`
+```
+(prop("sleep_awakenings_count") >= 5) or (prop("sleep_longest_wake_min") > 15)
+```
+Note: threshold is ≥5 awakenings (not ≥4 as previously documented), and also triggers on longest single wake > 15 min.
+
+### `flag_early_wake`
+```
+(prop("sleep_waketime_num") >= 330) and (prop("sleep_waketime_num") <= 445)
+```
+Note: triggers between minutes 330–445 after midnight = 5:30 AM–7:25 AM window. This is not an "early wake" flag in the intuitive sense — it appears to flag waking within a specific target window. Confirm intent with user before relying on this.
+
+### `flag_recovery_red_gate`
+```
+(((prop("hrv_sdnn_ms") < 40) and (prop("sleep_deep_min") < 35)) or (prop("rhr_bpm") > 68)) or (prop("spo2_min_pct") < 90)
+```
+Note: broader than documented — triggers on ANY of: (HRV<40 AND deep<35), RHR>68, OR SpO2 min<90. The SpO2 component was not in the original spec.
 
 ---
 
