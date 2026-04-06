@@ -540,3 +540,60 @@ manual paste rather than calling the Claude API directly.
 ---
 
 *Last updated: 2026-04-06 — Initial version. All tasks are unstarted. Complete phases in order.*
+
+---
+
+## Thread Handoff Brief — April 6, 2026
+
+> Read this if you are a new AI thread picking up this project.
+
+### Start here
+
+1. Read `docs/runbook.md` — follow the AI onboarding checklist at the top before doing anything else
+2. Read `docs/current-state.md` — ground truth on what exists and what doesn't
+3. Read `docs/schema-plan.md` — canonical field names (the Notion DB is the authority, not older docs)
+4. Read `docs/notion-api-notes.md` — the DB already exists; do not create a new one
+5. Read `docs/coaching-layer.md` — understand what the pipeline is being built to serve
+
+### Phase 0 status — fully complete
+
+| Task | Status | Output |
+|---|---|---|
+| 0.1 — Capture real HAE payload | ✅ Complete | `samples/hae_sample_2026-04-05.json` |
+| 0.2 — Retrieve formula expressions from live Notion DB | ✅ Complete | `docs/notion-api-notes.md` (all 13 formulas confirmed) |
+| 0.3 — Add 3 missing fields to Notion DB | ✅ Complete | `hr_day_min_bpm`, `hr_day_max_bpm`, `sleep_core_min` added via API PATCH |
+
+### What to work on next — Phase 1
+
+Tasks 1.1 and 1.2 are both 🟡 Ready and can be started in parallel. See the full prompts earlier in this file.
+
+**Task 1.1** — Webhook logging stub (`src/webhook.py`)
+**Task 1.2** — HAE normalization layer (`src/normalize.py`) — prompt has exact field paths, unit conversions, and expected test values for the April 5 record
+
+### Three formula discrepancies to flag before coding
+
+The live Notion formulas differ from what was originally documented. The formulas in the DB are correct — the docs that reference them need updating, but do not change the formulas themselves.
+
+| Formula | What docs said | What the DB actually has |
+|---|---|---|
+| `flag_spo2_low` | Uses `spo2_avg_pct`, threshold < 92 | Uses `spo2_min_pct`, threshold < 90 |
+| `flag_sleep_fragmented` | ≥4 awakenings OR awake_min ≥ 60 | ≥5 awakenings OR `sleep_longest_wake_min` > 15 |
+| `flag_recovery_red_gate` | (HRV<40 AND deep<35) OR RHR>68 | Same, PLUS `spo2_min_pct` < 90 as additional trigger |
+| `flag_early_wake` | Wake before ~5:00 AM | Triggers between 5:30–7:25 AM (target window, not early-wake) — confirm intent |
+
+### Notion credentials
+
+- **Database ID:** `339d7cd8-531f-819f-85b2-c769696ea27c`
+- **Token:** `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` (currently in use; treat as semi-public — rotation is planned post-MVP)
+- **Parent page:** `339d7cd8-531f-800b-b02d-efefaa086bf5` (Cornflower Health)
+
+### Key payload facts (verified from `samples/hae_sample_2026-04-05.json`)
+
+- Outer wrapper is an array: `payload[0]["data"]["metrics"]`
+- `sleep_analysis` values are in **hours** — multiply by 60 for minutes
+- `heart_rate` uses capital `Avg`, `Min`, `Max`
+- `blood_oxygen_saturation` is already in percent — do NOT multiply by 100
+- `wrist_temp` is in `degF` — do NOT convert
+- `inBed` and `asleep` keys in `sleep_analysis` are always 0 — derive `sleep_time_in_bed_min` from `inBedStart`/`inBedEnd` timestamps
+- `hr_sleep_avg_bpm`, `spo2_min_pct`, `sleep_awakenings_count` are **not in the HAE payload** — manual-only fields
+
