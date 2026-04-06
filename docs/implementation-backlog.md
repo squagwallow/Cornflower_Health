@@ -43,9 +43,14 @@ Use this document to answer: "What can I work on right now, and what is blocked?
 
 | Task | Status | Depends On | Blocks |
 |---|---|---|---|
-| **2.1** — HAE historical export structure verification | 🟡 Ready | Phase 1 complete ✅ | Task 2.2 |
-| **2.2** — Backfill script | 🔴 Blocked | Task 2.1 | Task 2.3 |
-| **2.3** — Full historical backfill run (6+ months) | 🔴 Blocked | Task 2.2; test backfill verified clean | Phase 4 (coaching layer requires historical data) |
+| **2.1** — HAE historical export structure verification | ✅ Complete | Phase 1 complete ✅ | Task 2.2 |
+| **2.2** — Backfill script | ✅ Complete | Task 2.1 | Task 2.3 |
+| **2.3** — Full historical backfill run (6+ months) | ✅ Complete | Task 2.2; test backfill verified clean | Phase 4 (coaching layer requires historical data) |
+
+**Notes:**
+- Task 2.1: Historical export structure confirmed — dict format matching live webhook.
+- Task 2.2: 29/29 tests passing.
+- Task 2.3: 218 dates processed, 217 written, 1 skipped (April 5 already existed from live pipeline), 0 errors. Data range: 2025-09-01 to 2026-04-06.
 
 ---
 
@@ -63,7 +68,7 @@ Use this document to answer: "What can I work on right now, and what is blocked?
 
 | Task | Status | Depends On | Blocks |
 |---|---|---|---|
-| **4.1** — Rolling baseline computation | 🔴 Blocked | Task 2.3 (full backfill); 30+ days clean data | Task 4.2 (recovery score depends on baselines) |
+| **4.1** — Rolling baseline computation | 🟡 Ready | Task 2.3 ✅ (backfill complete; 7 months of data available) | Task 4.2 (recovery score depends on baselines) |
 | **4.2** — LLM coaching prompt integration | 🔴 Blocked | Task 4.1; `docs/coaching-layer.md` (complete — no blocker on docs) | Nothing downstream |
 
 ---
@@ -84,13 +89,11 @@ Use this document to answer: "What can I work on right now, and what is blocked?
 
 ## Current Blockers Summary
 
-No hard blockers remain. All Phase 0 and Phase 1 tasks are complete. The backend is deployed and live.
+No hard blockers remain. Phases 0, 1, and 2 are complete. The backend is deployed and live. Historical backfill is done (7 months of data).
 
 ### Remaining decisions:
 
-1. **Verify live pipeline end-to-end** — HAE is configured; awaiting first successful live sync to Notion
-2. **Backfill export format confirmation (Task 2.1)** — Need to test a short HAE historical export to confirm JSON structure matches live webhook payload
-3. **Token rotation** — The Notion token in early thread reports is exposed. Rotation planned post-MVP but should be done soon.
+1. **Token rotation** — The Notion token was rotated on 2026-04-06.
 
 ---
 
@@ -127,4 +130,4 @@ These tasks were part of the integration report's non-coding priorities and are 
 
 ---
 
-*Last updated: 2026-04-06 — Updated all Phase 0, Phase 1, and Task 3.1 to Complete. Phase 2 tasks now Ready/Blocked. Removed resolved blockers.*
+*Last updated: 2026-04-06 — Phase 2 complete. Tasks 2.1, 2.2, 2.3 all marked ✅. Task 4.1 unblocked (7 months of historical data available).*

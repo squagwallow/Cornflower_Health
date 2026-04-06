@@ -15,30 +15,6 @@ These are blocking or foundational. Nothing else should start until these are co
   - Confirm field values are correct (date, numeric values, source_tags)
   - HAE configured with webhook URL `https://cornflower-health.onrender.com/webhook` and secret header
 
-- [ ] **Phase 2: Test HAE historical export structure (Task 2.1)**
-  - Export 1–2 weeks of historical data from HAE as JSON
-  - Compare structure against live webhook payload in `samples/`
-  - Update `docs/decision-log.md` with findings
-
----
-
-## Next
-
-These can start once the "Now" items are done.
-
-- [ ] **Write the backfill script (Task 2.2)**
-  - Read historical HAE JSON export
-  - Use the same normalization layer as the live pipeline
-  - Set `source_tags = "backfill_json"`
-  - Idempotency: skip rows where `date` already exists in Notion
-  - Rate limiting: 300–500ms between writes
-  - Write a log file per run
-
-- [ ] **Run full historical backfill (Task 2.3)**
-  - Export 6+ months of HAE data
-  - Run backfill script with --dry-run first
-  - QA checks per `docs/backfill-plan.md`
-
 ---
 
 ## Later
@@ -85,7 +61,10 @@ These are blocked on earlier phases being stable, or are lower priority.
 | 2026-04-06 | Task 3.1 — Deployed to Render free tier (`https://cornflower-health.onrender.com`) |
 | 2026-04-06 | `.env.example` file created |
 | 2026-04-06 | Webhook authentication (shared secret via `X-Webhook-Secret` header) — implemented in Task 1.1 |
+| 2026-04-06 | Task 2.1 — HAE historical export structure verified (dict format matches live webhook) |
+| 2026-04-06 | Task 2.2 — Backfill script (`scripts/backfill.py`) — 29/29 tests passing |
+| 2026-04-06 | Task 2.3 — Full historical backfill: 218 dates processed, 217 written, 1 skipped, 0 errors (Sept 2025 – April 2026) |
 
 ---
 
-*Last updated: 2026-04-06 — Moved completed Phase 0, Phase 1, and Task 3.1 to Done. Restructured Now/Next/Later to reflect current state.*
+*Last updated: 2026-04-06 — Phase 2 complete. Moved Tasks 2.1, 2.2, 2.3 to Done.*

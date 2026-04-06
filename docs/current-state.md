@@ -156,15 +156,27 @@ The deployed database contains several layers of fields that were never in the o
 
 ---
 
+## Phase 2 Backfill — Complete (2026-04-06)
+
+Historical backfill has been completed successfully:
+
+- **218 dates processed**, 217 written, 1 skipped (April 5 already existed from live pipeline), 0 errors
+- **Data range:** 2025-09-01 to 2026-04-06 (approximately 7 months)
+- **Source:** HAE historical JSON export (`samples/HealthAutoExport-2025-09-01-2026-04-06.json`, 54MB — not tracked in git)
+- **Export format:** Historical export confirmed as dict format matching live webhook payloads. No structural differences found. The backfill script handles both dict and array formats.
+- **Notion token:** Rotated on 2026-04-06.
+
+---
+
 ## Known Gaps
 
 - ~~No sample HAE JSON payload has been saved~~ — **Resolved 2026-04-06.**
 - ~~No backend endpoint exists yet~~ — **Resolved 2026-04-06.** Full pipeline deployed.
 - ~~Three v1 fields missing from Notion~~ — **Resolved 2026-04-06** (Task 0.3).
 - ~~Formula expressions not documented~~ — **Resolved 2026-04-06** (Task 0.2, all 13 formulas confirmed).
-- The Notion integration token seen in thread reports is likely compromised. Rotation planned post-MVP.
+- ~~The Notion integration token seen in thread reports is likely compromised. Rotation planned post-MVP.~~ — **Resolved 2026-04-06.** Token rotated.
 - Awaiting first successful live HAE → Render → Notion sync to confirm end-to-end pipeline in production.
 
 ---
 
-*Last updated: 2026-04-06 — Updated to reflect Phase 0, Phase 1, and Task 3.1 completion. Backend deployed to Render. All known gaps resolved except token rotation and live pipeline verification.*
+*Last updated: 2026-04-06 — Phase 2 backfill complete (218 days, Sept 2025 – April 2026). Notion token rotated. All known gaps resolved except live pipeline verification.*

@@ -78,4 +78,14 @@ Format per entry:
 
 ---
 
+## 2026-04-06 — HAE historical export uses same dict format as live webhook
+
+**Decision:** Task 2.1 confirmed that HAE historical JSON export uses the same dict format as live webhook payloads. No structural differences found. The backfill script handles both dict and array formats.
+
+**Rationale:** Testing the historical export against the live payload structure confirmed they are identical in format. This allowed the backfill script to reuse the same normalization layer without any format-specific branching. The script defensively handles both dict and array formats for robustness.
+
+**Alternatives considered:** None — this was a verification task, not a design decision. The provisional assumption (JSON export preferred over CSV) from the earlier decision log entry is now confirmed.
+
+---
+
 *Last updated: 2026-04-06*
