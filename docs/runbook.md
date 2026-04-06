@@ -178,4 +178,20 @@ Run these checks periodically (e.g., weekly) once the pipeline is live:
 
 ---
 
-*Last updated: 2026-04-06 — Added LLM Coaching Layer Configuration section (P4 from integration report). Updated field references to match deployed Notion schema.*
+---
+
+# Deployment
+
+| Item | Value |
+|---|---|
+| Platform | Render (free tier) |
+| Live URL | `https://cornflower-health.onrender.com` |
+| Webhook endpoint | `https://cornflower-health.onrender.com/webhook` |
+| Health check | `https://cornflower-health.onrender.com/health` |
+| Region | Oregon (US West) |
+| Deployed | 2026-04-06 |
+| Auth header | `X-Webhook-Secret: cornflower2026` |
+
+**Note on cold starts:** Render free tier spins down after 15 minutes of inactivity. The first request after idle takes ~30 seconds. HAE retries on non-200, so daily syncs are unaffected. If you want always-on, upgrade Render to the $7/month paid tier.
+
+*Last updated: 2026-04-06 — Added deployment section. Live on Render free tier. All Phase 1 tasks complete (37/37 tests passing).*
