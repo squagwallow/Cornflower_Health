@@ -4,7 +4,7 @@ This document defines the canonical internal schema for the health data backend 
 
 The schema is the single source of truth for field names, types, and constraints. Both the backend normalization logic and the Notion database configuration must conform to it.
 
-> **Important — audit finding (2026-04-06):** The Notion database (`339d7cd8-531f-81f5-be5d-000bc78ce4eb`) already exists and was built substantially beyond the v1 set described at repo creation. Several field names in the existing database differ from the names listed in the original `schema-plan.md`. This document has been updated to reflect the actual deployed field names as authoritative. Where discrepancies were found, the Notion field name is treated as the canonical name and the backend must be written to match it. See the discrepancy table below.
+> **Important — audit finding (2026-04-06):** The Notion database (`339d7cd8-531f-819f-85b2-c769696ea27c`) already exists and was built substantially beyond the v1 set described at repo creation. Several field names in the existing database differ from the names listed in the original `schema-plan.md`. This document has been updated to reflect the actual deployed field names as authoritative. Where discrepancies were found, the Notion field name is treated as the canonical name and the backend must be written to match it. See the discrepancy table below.
 
 ---
 

@@ -170,7 +170,7 @@ Run these checks periodically (e.g., weekly) once the pipeline is live:
 | Variable Name | Description |
 |---|---|
 | `NOTION_TOKEN` | Notion integration secret token |
-| `NOTION_DATABASE_ID` | ID of the target Notion database (`339d7cd8-531f-81f5-be5d-000bc78ce4eb`) |
+| `NOTION_DATABASE_ID` | ID of the target Notion database (`339d7cd8-531f-819f-85b2-c769696ea27c`) |
 | `HAE_WEBHOOK_SECRET` | Shared secret used to authenticate incoming HAE requests |
 | `BACKEND_PORT` | Webhook endpoint port (default: 8000) |
 | `LOG_LEVEL` | Logging verbosity (`INFO`, `DEBUG`) |

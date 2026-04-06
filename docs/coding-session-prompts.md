@@ -38,7 +38,7 @@ Key findings:
 **Prompt for coding session:**
 
 ```
-Using the Notion API, query the database schema for database ID 339d7cd8-531f-81f5-be5d-000bc78ce4eb.
+Using the Notion API, query the database schema for database ID 339d7cd8-531f-819f-85b2-c769696ea27c.
 For each property where "type" == "formula", retrieve the full "formula.expression" string.
 
 The target formula properties are:
@@ -60,7 +60,7 @@ Save the complete expression for each formula property to docs/notion-api-notes.
 "Confirmed Working Formula Definitions". Replace any "Status: needs verification" notes with the 
 confirmed expression.
 
-API endpoint: GET /v1/databases/339d7cd8-531f-81f5-be5d-000bc78ce4eb
+API endpoint: GET /v1/databases/339d7cd8-531f-819f-85b2-c769696ea27c
 Auth: Bearer $NOTION_TOKEN
 Notion-Version: 2022-06-28
 ```
@@ -79,7 +79,7 @@ Notion-Version: 2022-06-28
 
 ```
 Using the Notion API, add the following three Number properties to the existing database
-339d7cd8-531f-81f5-be5d-000bc78ce4eb via PATCH /v1/databases/{id}.
+339d7cd8-531f-819f-85b2-c769696ea27c via PATCH /v1/databases/{id}.
 
 Properties to add:
 1. hr_day_min_bpm — type: number, number_format: "number"
@@ -243,7 +243,7 @@ Save to src/normalize.py
 
 ```
 Write a Python module that accepts a normalized record (output of normalize.py) and writes it
-to the existing Notion database 339d7cd8-531f-81f5-be5d-000bc78ce4eb.
+to the existing Notion database 339d7cd8-531f-819f-85b2-c769696ea27c.
 
 Reference files to read first:
 - docs/schema-plan.md         (field types for each Notion property)

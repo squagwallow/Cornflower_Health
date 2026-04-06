@@ -35,7 +35,7 @@ Top-level payload structure confirmed from thread testing: `data.metrics[]` arra
 **The Notion database already exists and is substantially built.**
 
 - Database name: Daily Health Metrics
-- Database ID: `339d7cd8-531f-81f5-be5d-000bc78ce4eb`
+- Database ID: `339d7cd8-531f-819f-85b2-c769696ea27c`
 - Database URL: `https://www.notion.so/339d7cd8531f819f85b2c769696ea27c`
 - Parent page ID: `339d7cd8-531f-800b-b02d-efefaa086bf5` (Cornflower Health)
 
@@ -122,7 +122,7 @@ The deployed database contains several layers of fields that were never in the o
 5. **Historical backfill is a first-class phase**, not an afterthought. It will be planned and executed deliberately.
 6. **This repository is the authoritative project memory.** Future AI threads must read it before generating new work.
 7. **JSON export preferred over CSV** for backfill (provisional — confirm after test export).
-8. **The Notion database already exists** — do not create a new one. The database `339d7cd8-531f-81f5-be5d-000bc78ce4eb` is the target.
+8. **The Notion database already exists** — do not create a new one. The database `339d7cd8-531f-819f-85b2-c769696ea27c` is the target.
 
 ---
 

@@ -13,11 +13,11 @@ This document captures hard-won knowledge from building the Daily Health Metrics
 | Item | Value |
 |---|---|
 | Database name | Daily Health Metrics |
-| Database ID (for API calls) | `339d7cd8-531f-81f5-be5d-000bc78ce4eb` |
+| Database ID (for API calls) | `339d7cd8-531f-819f-85b2-c769696ea27c` |
 | Database URL | `https://www.notion.so/339d7cd8531f819f85b2c769696ea27c` |
 | Parent page ID | `339d7cd8-531f-800b-b02d-efefaa086bf5` |
 | Parent page name | Cornflower Health |
-| Data source (collection) ID | `collection://339d7cd8-531f-81f5-be5d-000bc78ce4eb` |
+| Data source (collection) ID | `collection://339d7cd8-531f-819f-85b2-c769696ea27c` |
 
 **Status as of 2026-04-06:** The database exists, is fully built, and contains a test row (Formula Test Row – DELETE ME). It is substantially ahead of what `schema-plan.md` documented at repo creation. See `current-state.md` for the full audit comparison.
 
