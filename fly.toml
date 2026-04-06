@@ -1,0 +1,36 @@
+# Fly.io deployment config for Cornflower Health webhook backend
+# Deploy with: fly deploy
+# First-time setup: fly launch --no-deploy (then set secrets, then fly deploy)
+
+app = "cornflower-health"
+primary_region = "den"  # Denver — closest to user location
+
+[build]
+  dockerfile = "Dockerfile"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = false   # Keep always-on — no cold starts
+  auto_start_machines = true
+  min_machines_running = 1
+
+  [http_service.concurrency]
+    type = "requests"
+    hard_limit = 25
+    soft_limit = 20
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[checks]
+  [checks.health]
+    grace_period = "10s"
+    interval = "30s"
+    method = "GET"
+    path = "/health"
+    port = 8000
+    timeout = "5s"
+    type = "http"
