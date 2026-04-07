@@ -1,0 +1,100 @@
+{
+  "Daily Dashboard": {
+    "page_id": "33bd7cd8-531f-8106-b282-c47a1d1ddb39",
+    "views": {
+      "exertion_view": null,
+      "notes_view": null,
+      "workout_view": null
+    },
+    "blocks": {
+      "callout_0": "33bd7cd8-531f-81e8-afaf-d0618d6110bd",
+      "callout_1": "33bd7cd8-531f-81d4-9ada-caec341fdb6c",
+      "heading_2_2": "33bd7cd8-531f-81fd-92a4-e720030e6cc8",
+      "divider_3": "33bd7cd8-531f-81ff-823a-d67977b4907f",
+      "paragraph_4": "33bd7cd8-531f-8156-b1b0-fd0712ed0074",
+      "paragraph_5": "33bd7cd8-531f-8139-a9c6-d297a221b9a4",
+      "heading_2_6": "33bd7cd8-531f-8156-987a-e52ab9aa4615",
+      "divider_7": "33bd7cd8-531f-811e-8e54-da00b67fb6d4",
+      "paragraph_8": "33bd7cd8-531f-8149-96c7-f4b7fb594a9b",
+      "paragraph_9": "33bd7cd8-531f-81eb-bbf8-ea1a2a42f6c8",
+      "paragraph_10": "33bd7cd8-531f-81c3-9ace-f0d16492a740",
+      "paragraph_11": "33bd7cd8-531f-81a6-806b-e07b10651cf3",
+      "paragraph_12": "33bd7cd8-531f-8148-91fa-ccd704b33b66",
+      "paragraph_13": "33bd7cd8-531f-81c8-a282-c56552d41895",
+      "heading_2_14": "33bd7cd8-531f-817e-abe6-e97decf7e337",
+      "divider_15": "33bd7cd8-531f-81d4-a92f-e8ef08ec001c",
+      "paragraph_16": "33bd7cd8-531f-81d9-bd9e-d502a5392536",
+      "paragraph_17": "33bd7cd8-531f-8126-a08b-e6f9de16d1be",
+      "paragraph_18": "33bd7cd8-531f-81b0-9bf8-c453fdfe471e",
+      "paragraph_19": "33bd7cd8-531f-8143-87e9-e7499ff3c7f2",
+      "paragraph_20": "33bd7cd8-531f-819f-93e1-efb1a5527406",
+      "toggle_21": "33bd7cd8-531f-8140-8c9d-f58f45b72294",
+      "toggle_22": "33bd7cd8-531f-810a-ac8e-cc49ec02ffe9",
+      "toggle_23": "33bd7cd8-531f-81c6-a491-cb00e12ca751",
+      "heading_2_24": "33bd7cd8-531f-81c5-ba47-e25b874c3d5b",
+      "divider_25": "33bd7cd8-531f-817f-bb78-d962fea1f314",
+      "paragraph_26": "33bd7cd8-531f-81de-a47e-f5a8b7dfaf3b",
+      "callout_27": "33bd7cd8-531f-81f2-b14f-e44d21cbb7cd",
+      "toggle_28": "33bd7cd8-531f-81ce-bdb9-d36e6e68735c"
+    }
+  },
+  "Trends": {
+    "page_id": "33bd7cd8-531f-8191-b0e0-e70983843c75",
+    "views": {},
+    "blocks": {
+      "heading_2_0": "33bd7cd8-531f-8118-bfd2-ce780a68cf85",
+      "divider_1": "33bd7cd8-531f-818e-8a30-fa9d3267b360",
+      "paragraph_2": "33bd7cd8-531f-81f4-9b0f-e32d3b34728e",
+      "heading_2_3": "33bd7cd8-531f-8163-9b06-e05a336ff954",
+      "divider_4": "33bd7cd8-531f-811c-8271-e874f0170292",
+      "paragraph_5": "33bd7cd8-531f-810b-a63f-c4a28b61c856",
+      "heading_2_6": "33bd7cd8-531f-81f9-95ca-fba003711faa",
+      "divider_7": "33bd7cd8-531f-8140-a887-cf5631e33c2e",
+      "paragraph_8": "33bd7cd8-531f-8129-bfac-d02aa70a5b90",
+      "heading_2_9": "33bd7cd8-531f-815e-aa9a-eb09f06b0cf8",
+      "divider_10": "33bd7cd8-531f-8181-8fa8-fa2b9a3d4af9",
+      "paragraph_11": "33bd7cd8-531f-816e-b520-d70eb489243c"
+    }
+  },
+  "Flags & Alerts": {
+    "page_id": "33bd7cd8-531f-8156-a42f-cd17861e4cd0",
+    "views": {
+      "flagged_days_table": null
+    },
+    "blocks": {
+      "heading_2_0": "33bd7cd8-531f-810f-b048-c537a7536af4",
+      "divider_1": "33bd7cd8-531f-8110-ba9e-e6a3e8b42a05",
+      "paragraph_2": "33bd7cd8-531f-8125-819f-d9b42613b2c3",
+      "paragraph_3": "33bd7cd8-531f-814b-b4a7-ff117531f1bc",
+      "toggle_4": "33bd7cd8-531f-81ac-a0b0-caf419eee0cf"
+    }
+  },
+  "Full Data Table": {
+    "page_id": "33bd7cd8-531f-8123-aa69-f5534e6cce89",
+    "views": {
+      "full_table": null
+    },
+    "blocks": {
+      "heading_2_0": "33bd7cd8-531f-81f0-bd57-fe6583a7b888",
+      "divider_1": "33bd7cd8-531f-812e-8e76-e78289d13fa8",
+      "paragraph_2": "33bd7cd8-531f-8126-8038-ce1c850fc092",
+      "callout_3": "33bd7cd8-531f-812c-86d2-f4f4510fca87"
+    }
+  },
+  "Settings & Reference": {
+    "page_id": "33bd7cd8-531f-811e-ac6b-d71f46fb5d66",
+    "views": {},
+    "blocks": {
+      "heading_2_0": "33bd7cd8-531f-8140-91eb-d032af9e3e9f",
+      "paragraph_1": "33bd7cd8-531f-8182-86ce-f1aefaa8de9d",
+      "paragraph_2": "33bd7cd8-531f-81d2-85dc-da32e3095a84",
+      "paragraph_3": "33bd7cd8-531f-8187-abb8-d97180e6078b",
+      "paragraph_4": "33bd7cd8-531f-81d4-bd2a-f4252ff459fd",
+      "paragraph_5": "33bd7cd8-531f-8163-8658-ff591dee813f",
+      "toggle_6": "33bd7cd8-531f-8184-a7ef-d51786345100",
+      "toggle_7": "33bd7cd8-531f-8154-99a7-e8d9bd8b65a2",
+      "toggle_8": "33bd7cd8-531f-8125-a056-d4cf9906c39b",
+      "toggle_9": "33bd7cd8-531f-8190-a2dd-fbdcfcf6ad00"
+    }
+  }
+}

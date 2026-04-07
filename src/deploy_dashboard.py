@@ -97,14 +97,19 @@ def _setup_logging() -> str:
 
 def api_create_page(
     parent_id: str, title: str, icon_emoji: str, client: httpx.Client | None,
+    children: list[dict] | None = None,
     dry_run: bool = False,
 ) -> str | None:
-    """Create a Notion page. Returns page ID or None."""
-    payload = {
+    """Create a Notion page (with optional inline children). Returns page ID or None."""
+    payload: dict[str, Any] = {
         "parent": {"page_id": parent_id},
         "icon": {"type": "emoji", "emoji": icon_emoji},
-        "title": [{"type": "text", "text": {"content": title}}],
+        "properties": {
+            "title": {"title": [{"type": "text", "text": {"content": title}}]}
+        },
     }
+    if children:
+        payload["children"] = children
 
     if dry_run:
         logger.info("DRY RUN: would create page '%s' under %s", title, parent_id)
@@ -158,7 +163,8 @@ def api_append_children(
 
     for attempt in range(2):
         try:
-            resp = client.post(
+            # Notion API: append block children uses PATCH, not POST
+            resp = client.patch(
                 f"{NOTION_BASE}/blocks/{block_id}/children",
                 headers=_headers(),
                 json={"children": children},
@@ -186,6 +192,24 @@ def api_append_children(
             return None
     logger.error("Gave up appending children to %s after 2 attempts", block_id)
     return None
+
+
+def api_fetch_children(
+    block_id: str, client: httpx.Client | None,
+) -> list[dict]:
+    """GET /v1/blocks/{id}/children to retrieve created block IDs after page creation."""
+    if not client:
+        return []
+    try:
+        resp = client.get(
+            f"{NOTION_BASE}/blocks/{block_id}/children",
+            headers=_headers(),
+        )
+        resp.raise_for_status()
+        return resp.json().get("results", [])
+    except Exception as exc:
+        logger.error("Error fetching children of %s: %s", block_id, exc)
+        return []
 
 
 def api_create_view(
@@ -519,37 +543,19 @@ def build_daily_dashboard_blocks() -> list[dict]:
 def build_trends_blocks() -> list[dict]:
     """Build the block structure for the Trends page (Page 2).
 
-    Creates a tab block with 4 tabs (5/10/20/40 days).
-    Chart views are created separately via the Views API after the page exists.
+    Uses standard section headings for each time window.
+    Tab/chart UI requires the Notion Views API; add linked DB views
+    manually in Notion for each window once the pages are created.
     """
     blocks = []
 
-    # Notion tab blocks: we create placeholder content in each tab.
-    # The actual charts are linked views created via POST /v1/views.
-    # Since tabs require nested children, we build the tab structure here.
-
-    tab_labels = ["5 Days", "10 Days", "20 Days", "40 Days"]
-    tab_children = []
-
-    for label in tab_labels:
-        # Each tab gets placeholder paragraphs; chart views added after deploy
-        tab_children.append({
-            "type": "tab",
-            "tab": {
-                "title": label,
-                "children": [
-                    paragraph(f"[Charts for {label} window — created via Views API after deploy]",
-                              color="gray"),
-                ],
-            },
-        })
-
-    blocks.append({
-        "type": "tab_block",
-        "tab_block": {
-            "children": tab_children,
-        },
-    })
+    for label, days in [("5 Days", 5), ("10 Days", 10), ("20 Days", 20), ("40 Days", 40)]:
+        blocks.append(heading_2(f"Trends — {label}"))
+        blocks.append(divider())
+        blocks.append(paragraph(
+            f"[Add linked database view here, filtered to last {days} days]",
+            color="gray",
+        ))
 
     return blocks
 
@@ -681,10 +687,10 @@ def build_settings_blocks() -> list[dict]:
 
     # Zone Mapping toggle
     blocks.append(toggle("Zone Mapping", children=[
-        paragraph("\ud83d\udfe2 GREEN (75\u2013100): Full training cleared"),
-        paragraph("\ud83d\udfe1 YELLOW (50\u201374): Moderate load only"),
-        paragraph("\ud83d\udfe0 ORANGE (25\u201349): Light activity or active recovery"),
-        paragraph("\ud83d\udd34 RED (0\u201324): Rest day; no structured training"),
+        paragraph("\U0001F7E2 GREEN (75\u2013100): Full training cleared"),
+        paragraph("\U0001F7E1 YELLOW (50\u201374): Moderate load only"),
+        paragraph("\U0001F7E0 ORANGE (25\u201349): Light activity or active recovery"),
+        paragraph("\U0001F534 RED (0\u201324): Rest day; no structured training"),
     ]))
 
     return blocks
@@ -989,14 +995,7 @@ def deploy_page(
     icon = PAGE_SPECS[page_name]
     logger.info("Deploying page: %s %s", icon, page_name)
 
-    # Create the page
-    page_id = api_create_page(PARENT_PAGE_ID, page_name, icon, client, dry_run)
-    if not page_id:
-        return None
-
-    ids: dict[str, Any] = {"page_id": page_id, "views": {}, "blocks": {}}
-
-    # Build and append block content
+    # Build block content first
     if page_name == "Daily Dashboard":
         blocks = build_daily_dashboard_blocks()
     elif page_name == "Trends":
@@ -1010,60 +1009,60 @@ def deploy_page(
     else:
         blocks = []
 
-    if blocks:
-        results = append_blocks_recursive(page_id, blocks, client, dry_run)
-        # Store block IDs keyed by type + index for the update script
-        for i, result in enumerate(results):
-            block_type = result.get("type", f"block_{i}")
-            block_id = result.get("id", "")
-            ids["blocks"][f"{block_type}_{i}"] = block_id
+    # Create the page WITH inline children in a single API call.
+    # POST /v1/blocks/{id}/children is unavailable for this integration token
+    # (returns invalid_request_url), but POST /v1/pages with inline children works.
+    page_id = api_create_page(
+        PARENT_PAGE_ID, page_name, icon, client,
+        children=blocks if blocks else None,
+        dry_run=dry_run,
+    )
+    if not page_id:
+        return None
 
-        # Extract tab block IDs for Trends page
-        if page_name == "Trends":
-            tab_block_ids = {}
-            windows = [5, 10, 20, 40]
-            # The first result should be the tab_block containing tabs
-            if results and results[0].get("type") == "tab_block":
-                tab_block_result = results[0]
-                # Fetch tab children to get individual tab IDs
-                tab_parent_id = tab_block_result.get("id", "")
-                if not dry_run and client and tab_parent_id:
-                    try:
-                        resp = client.get(
-                            f"{NOTION_BASE}/blocks/{tab_parent_id}/children",
-                            headers=_headers(),
-                        )
-                        resp.raise_for_status()
-                        tab_results = resp.json().get("results", [])
-                        for j, window in enumerate(windows):
-                            if j < len(tab_results):
-                                tab_block_ids[f"tab_{window}d"] = tab_results[j]["id"]
-                    except Exception as exc:
-                        logger.error("Error fetching tab block children: %s", exc)
-                elif dry_run:
-                    for j, window in enumerate(windows):
-                        tab_block_ids[f"tab_{window}d"] = f"dry-run-tab-{window}d"
-
-                ids["blocks"]["tab_block_ids"] = tab_block_ids
+    ids: dict[str, Any] = {"page_id": page_id, "views": {}, "blocks": {}}
 
     # Rate limit between API calls
     if not dry_run:
-        time.sleep(0.35)
+        time.sleep(0.5)
 
-    # Create linked database views
-    if page_name == "Daily Dashboard":
-        view_ids = create_daily_dashboard_views(page_id, ids["blocks"], client, dry_run)
-        ids["views"].update(view_ids)
-    elif page_name == "Trends":
-        tab_ids = ids["blocks"].get("tab_block_ids", {})
-        view_ids = create_trends_views(page_id, tab_ids, client, dry_run)
-        ids["views"].update(view_ids)
-    elif page_name == "Flags & Alerts":
-        view_ids = create_flags_views(page_id, client, dry_run)
-        ids["views"].update(view_ids)
-    elif page_name == "Full Data Table":
-        view_ids = create_full_table_view(page_id, client, dry_run)
-        ids["views"].update(view_ids)
+    # Fetch the created block IDs via GET (this works with our token).
+    # IDs are stored as "{type}_{index}" matching what update_dashboard.py expects.
+    if blocks and not dry_run and client:
+        created = api_fetch_children(page_id, client)
+        for i, result in enumerate(created):
+            block_type = result.get("type", f"block_{i}")
+            block_id = result.get("id", "")
+            ids["blocks"][f"{block_type}_{i}"] = block_id
+        logger.info(
+            "Fetched %d block IDs for '%s'", len(created), page_name
+        )
+    elif dry_run:
+        # Populate fake IDs for downstream dry-run validation
+        for i, block in enumerate(blocks):
+            block_type = block.get("type", f"block_{i}")
+            ids["blocks"][f"{block_type}_{i}"] = f"dry-run-block-{i}"
+
+    # Create linked database views (POST /v1/views).
+    # These will be skipped gracefully if the endpoint is unavailable —
+    # views can be added manually in Notion after deploy.
+    try:
+        if page_name == "Daily Dashboard":
+            view_ids = create_daily_dashboard_views(page_id, ids["blocks"], client, dry_run)
+            ids["views"].update(view_ids)
+        elif page_name == "Trends":
+            view_ids = create_trends_views(page_id, {}, client, dry_run)
+            ids["views"].update(view_ids)
+        elif page_name == "Flags & Alerts":
+            view_ids = create_flags_views(page_id, client, dry_run)
+            ids["views"].update(view_ids)
+        elif page_name == "Full Data Table":
+            view_ids = create_full_table_view(page_id, client, dry_run)
+            ids["views"].update(view_ids)
+    except Exception as exc:
+        logger.warning(
+            "View creation skipped for '%s' (non-fatal): %s", page_name, exc
+        )
 
     return ids
 
