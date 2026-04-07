@@ -59,8 +59,9 @@ Use this document to answer: "What can I work on right now, and what is blocked?
 | Task | Status | Depends On | Blocks |
 |---|---|---|---|
 | **3.1** — Deploy backend to Render | ✅ Complete | — | — |
-| **3.2** — Webhook authentication hardening | 🟡 Ready | Task 3.1 ✅ | Nothing (can layer on top of live backend) |
-| **3.3** — Basic error alerting | 🟡 Ready | Task 3.1 ✅ | Nothing (monitoring is independent) |
+| **3.2** — Webhook authentication hardening | ✅ Complete | Task 3.1 ✅ | — |
+| **3.3** — Gap detection endpoint | ✅ Complete (detection only) | Task 3.1 ✅ | — |
+| **3.3b** — Push alert on missing day | 🟡 Ready | Task 3.3 ✅ | Nothing (add email/Slack notification) |
 
 ---
 
@@ -130,4 +131,4 @@ These tasks were part of the integration report's non-coding priorities and are 
 
 ---
 
-*Last updated: 2026-04-06 — Phase 2 complete. Tasks 2.1, 2.2, 2.3 all marked ✅. Task 4.1 unblocked (7 months of historical data available).*
+*Last updated: 2026-04-07 — Phase 3 complete (3.2 HMAC auth ✅, 3.3 gap detection ✅). Task 3.3b (push alert on missing day) added as next infrastructure item. Dashboard pages deployed, automation live.*

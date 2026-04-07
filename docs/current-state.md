@@ -179,4 +179,31 @@ Historical backfill has been completed successfully:
 
 ---
 
-*Last updated: 2026-04-06 — Phase 2 backfill complete (218 days, Sept 2025 – April 2026). Notion token rotated. All known gaps resolved except live pipeline verification.*
+---
+
+## Phase 3 Status (2026-04-07)
+
+Phase 3 infrastructure tasks are complete and deployed:
+
+| Component | Change | Status |
+|---|---|---|
+| HMAC-SHA256 webhook auth | `X-HAE-Signature` verification + bearer fallback | ✅ Deployed |
+| Upsert writes | `notion_writer` now PATCHes existing rows instead of skipping | ✅ Deployed |
+| `/check-gaps` endpoint | Scans last 7 days; returns missing dates | ✅ Deployed |
+| `/ping` keep-warm endpoint | Prevents Render cold-start drops | ✅ Deployed |
+| Daily cron fallback | `render.yaml` 9am MDT dashboard update | ✅ Committed |
+| All 5 dashboard pages | Deployed to Notion with block IDs in `config/dashboard_ids.json` | ✅ Live |
+| Background dashboard update | Fires after every successful HAE write | ✅ Deployed |
+
+**Remaining Phase 3 gap:** `/check-gaps` detects missing days but sends no push notification.
+Phase 3.3 alert delivery (email/Slack) is not yet implemented.
+
+**Keep-warm pinger:** User needs to set up cron-job.org (free) pointing at
+`https://cornflower-health.onrender.com/ping` every 10 minutes. Without this,
+Render free-tier cold starts may drop HAE payloads.
+
+**Linked views:** All 6 linked database views needed across the 5 dashboard pages
+must be added manually in Notion. See `docs/notion-linked-views-guide.md` for
+step-by-step templates for each view.
+
+*Last updated: 2026-04-07 — Phase 3 complete. Dashboard automation live. Upsert writes deployed. Keep-warm pinger pending user action.*
