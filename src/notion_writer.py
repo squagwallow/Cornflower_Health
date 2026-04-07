@@ -164,6 +164,39 @@ def _query_existing(date_str: str, client: httpx.Client) -> str | None:
     return None
 
 
+def _patch_page(page_id: str, properties: dict[str, Any], client: httpx.Client) -> dict | None:
+    """
+    PATCH an existing Notion page with updated properties.
+    Used when a row for this date already exists (upsert on re-sync).
+    Retries once on 429. Returns response JSON on success, None on failure.
+    """
+    url = f"{NOTION_BASE}/pages/{page_id}"
+    # Don't re-send the title/Entry field on updates — it would duplicate the title
+    update_props = {k: v for k, v in properties.items() if k != "Entry"}
+    payload = {"properties": update_props}
+
+    for attempt in range(2):
+        try:
+            resp = client.patch(url, headers=_headers(), json=payload)
+            if resp.status_code == 429:
+                retry_after = int(resp.headers.get("Retry-After", "1"))
+                logger.warning("Rate limited (429) — retrying after %ds", retry_after)
+                time.sleep(retry_after)
+                continue
+            resp.raise_for_status()
+            return resp.json()
+        except httpx.HTTPStatusError as exc:
+            logger.error(
+                "HTTP error patching page %s (attempt %d): %s %s",
+                page_id, attempt + 1, exc.response.status_code, exc.response.text[:200]
+            )
+            return None
+        except Exception as exc:
+            logger.error("Unexpected error patching page %s (attempt %d): %s", page_id, attempt + 1, exc)
+            return None
+    return None
+
+
 def _post_page(properties: dict[str, Any], client: httpx.Client) -> dict | None:
     """
     POST a new page to the Notion database. Retries once on 429.
@@ -237,18 +270,6 @@ def write(record: dict[str, Any]) -> dict[str, Any]:
 
     with httpx.Client(timeout=30.0) as client:
 
-        # --- Idempotency: check for existing row ---
-        existing_id = _query_existing(date_str, client)
-        if existing_id:
-            msg = f"Duplicate skipped — page already exists for {date_str} (id: {existing_id})"
-            logger.info(msg)
-            return {
-                "status": "skipped",
-                "date": date_str,
-                "page_id": existing_id,
-                "message": msg,
-            }
-
         # --- Build properties payload ---
         try:
             properties = _build_properties(record)
@@ -257,7 +278,26 @@ def write(record: dict[str, Any]) -> dict[str, Any]:
             logger.error(msg)
             return {"status": "error", "date": date_str, "page_id": None, "message": msg}
 
-        # --- Write to Notion ---
+        # --- Upsert: update existing row or create new one ---
+        existing_id = _query_existing(date_str, client)
+        if existing_id:
+            # Update the existing row with the latest data from HAE.
+            # This ensures re-syncing later in the day (e.g., after a workout
+            # or mindfulness session) always reflects the most current values.
+            result = _patch_page(existing_id, properties, client)
+            if result is None:
+                msg = f"Failed to update existing page for {date_str} (id: {existing_id})"
+                return {"status": "error", "date": date_str, "page_id": existing_id, "message": msg}
+            msg = f"Updated — date: {date_str}, page_id: {existing_id}"
+            logger.info(msg)
+            return {
+                "status": "updated",
+                "date": date_str,
+                "page_id": existing_id,
+                "message": msg,
+            }
+
+        # --- No existing row — write new page ---
         result = _post_page(properties, client)
         if result is None:
             msg = f"Failed to write page for {date_str} — see logs above for details"
