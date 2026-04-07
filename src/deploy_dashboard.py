@@ -37,6 +37,9 @@ NOTION_TOKEN = os.getenv("NOTION_TOKEN", "")
 NOTION_DATABASE_ID = os.getenv(
     "NOTION_DATABASE_ID", "339d7cd8-531f-819f-85b2-c769696ea27c"
 )
+# Internal collection UUID — used by POST /v1/views as data_source_id.
+# Different from the public database ID; found via the data-source-url on the parent page.
+NOTION_COLLECTION_ID = "339d7cd8-531f-81f5-be5d-000bc78ce4eb"
 PARENT_PAGE_ID = "339d7cd8-531f-800b-b02d-efefaa086bf5"
 NOTION_VERSION = "2022-06-28"
 NOTION_BASE = "https://api.notion.com/v1"
@@ -375,7 +378,9 @@ def _linked_view_payload(
         "parent": {"block_id": parent_block_id},
         "type": view_type,
         "title": title,
-        "create_database": NOTION_DATABASE_ID,
+        # data_source_id is the internal Notion collection UUID — NOT the public database ID.
+        # Found via GET /v1/pages/{parent_page_id} → data-source-url → collection://{uuid}
+        "data_source_id": NOTION_COLLECTION_ID,
     }
     if visible_properties:
         payload["visible_properties"] = visible_properties
@@ -399,7 +404,7 @@ def _chart_view_payload(
         "parent": {"block_id": parent_block_id},
         "type": "chart",
         "title": title,
-        "create_database": NOTION_DATABASE_ID,
+        "data_source_id": NOTION_COLLECTION_ID,
         "chart": {
             "chart_type": chart_type,
             "x_axis": {"property": x_axis},

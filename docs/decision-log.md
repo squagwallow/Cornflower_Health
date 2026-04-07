@@ -89,3 +89,27 @@ Format per entry:
 ---
 
 *Last updated: 2026-04-06*
+
+---
+
+## Open Research Questions (added 2026-04-07)
+
+### HRV Methodology: Athlytic vs Bevel Philosophy
+**Status:** Unresolved — pending research. Add to backlog before implementing any HRV weighting changes.
+
+**Observation:**
+- Athlytic tends to produce higher-variance HRV readings, weights recent samples heavily,
+  and recalculates daily recovery when mindfulness sessions are completed (especially early
+  in the day). It actively pulls HRV from mindfulness/breathing session data.
+- Bevel produces tightly distributed HRV data, is less responsive to intraday swings,
+  and appears to use a more smoothed/averaged approach.
+
+**Questions to resolve:**
+1. What underlying HRV metric does each app use — RMSSD, SDNN, or something else? Are they measuring the same thing?
+2. Does Athlytic pull from all Apple Health HRV samples (including Mindfulness app sessions) or only overnight/morning readings?
+3. What does HAE export for HRV — is it the overnight average, the most recent reading, or all samples? Can we control which one we store?
+4. Given our use case (daily recovery scoring, stimulant protocol gating), which philosophy better serves the goal? A more responsive model tracks genuine intraday changes but may produce noisy gates; a smoothed model is more stable but may lag real recovery shifts.
+5. Should the 60-day baseline be computed from all stored HRV values or only overnight values?
+
+**Recommended approach before resolving:**
+Route to Tier 3 (research prompt) in `docs/agentic-cost-guidelines.md`, then bring the research findings back for an informed implementation decision. Do not change HRV storage or baseline logic until this is settled.

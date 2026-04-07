@@ -16,3 +16,22 @@ services:
         sync: false
       - key: LOG_LEVEL
         value: INFO
+
+  # Daily cron safety-net: re-runs the dashboard update at 9am MDT (15:00 UTC)
+  # in case the HAE webhook fired but the background update thread failed.
+  - type: cron
+    name: cornflower-health-daily-update
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    schedule: "0 15 * * *"  # 9:00 AM MDT
+    startCommand: python src/update_dashboard.py
+
+    envVars:
+      - key: NOTION_TOKEN
+        sync: false
+      - key: NOTION_DATABASE_ID
+        sync: false
+      - key: LOG_LEVEL
+        value: INFO

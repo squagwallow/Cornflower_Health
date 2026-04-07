@@ -11,6 +11,7 @@ Pipeline: POST /webhook → validate → log → normalize() → notion_writer.w
 import json
 import logging
 import os
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -104,6 +105,21 @@ async def receive_webhook(request: Request) -> Response:
     if result["status"] == "error":
         # Still return 200 to prevent HAE from retrying — the error is logged
         logger.error("Notion write failed for %s: %s", result.get("date"), result.get("message"))
+
+    # --- Auto-update dashboard in background ---
+    # After a successful write, trigger update_dashboard.py so the
+    # Daily Dashboard page reflects the new data without any manual step.
+    if result["status"] in ("written", "skipped"):
+        date_str = result.get("date")
+        def _bg_dashboard_update(d: str) -> None:
+            try:
+                from update_dashboard import run_update
+                logger.info("Background dashboard update starting for %s", d)
+                run_update(date_str=d, dry_run=False)
+                logger.info("Background dashboard update complete for %s", d)
+            except Exception as exc:
+                logger.error("Background dashboard update failed for %s: %s", d, exc)
+        threading.Thread(target=_bg_dashboard_update, args=(date_str,), daemon=True).start()
 
     response_body = {
         "status": result["status"],       # "written" | "skipped" | "error"

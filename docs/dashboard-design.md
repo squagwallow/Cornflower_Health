@@ -420,3 +420,63 @@ After the API deployment, complete these in the Notion UI:
 
 *Design spec v2 — incorporates all user feedback from April 6 conversation.*
 *Ready for implementation.*
+
+---
+
+## Phase 6 — Visual Enhancement Spec (added 2026-04-07)
+*Not yet implemented. Design target for a future agentic session.*
+
+### Goal
+Elevate the Daily Dashboard from structured text to a visually rich, card-based interface
+resembling the Athlytic / Bevel mobile UI. The current text-based blocks are functional
+but don't provide strong at-a-glance visual cues.
+
+### Desired Visual Elements
+
+**1. Recovery Ring / Circle Progress Indicator**
+The top-of-page recovery zone display should show a visual ring or arc representing
+0–100 score (like Athlytic's green ring or Bevel's circular gauge), not just text.
+Notion does not natively support SVG or HTML embeds in standard pages, so this will
+likely require either:
+- A hosted HTML page (served from Render at `/dashboard`) that reads from Notion via API
+  and renders charts with Chart.js or D3
+- A Notion embed block pointing to that hosted URL
+- Fallback: text-based progress bar approximation using Unicode block chars (▓▓▓▓░)
+
+**2. Metric vs Baseline Band Visualization**
+Key metrics (HRV, RHR, deep sleep) should be plotted or displayed relative to the
+user's personal historical range, similar to Athlytic's "normal range band" visualization:
+- Show today's value as a point
+- Show the 60-day ± 1 SD band as context
+- Color-code the position: above band = green, in band = yellow, below band = red
+- Notion approach: formatted text + colored callout block indicating position
+- Full visual approach: hosted HTML with sparkline charts
+
+**3. Card-Based Section Layout**
+Each metric section (Recovery, Sleep, Flags, Booster) should feel like a distinct card:
+- Colored background callout as the card container (already partially done)
+- Icon + bold title at top of each card
+- Key number large and prominent
+- Secondary context (7d avg, 60d baseline) smaller below
+- Horizontal dividers between cards (already present)
+
+**4. Trend Arrows with Context**
+Current arrows (↑↓→) are good but should include color context:
+- Green ↑ for favorable direction (HRV up, RHR down)
+- Red ↓ for unfavorable direction
+- Gray → for stable
+Notion's colored text annotations support this.
+
+### Implementation Path
+1. **Short term (Notion-only):** Improve callout formatting in `update_dashboard.py` —
+   better emoji use, colored text for metrics, Unicode progress bars for the ring
+2. **Medium term (hosted dashboard):** Build `src/dashboard_server.py` — a FastAPI
+   page that queries Notion and renders an HTML mobile dashboard with Chart.js rings
+   and baseline bands. Serve at `https://cornflower-health.onrender.com/dashboard`.
+   This is the approach needed for true Athlytic-style visual richness.
+3. **Long term:** Consider a dedicated iOS shortcut or widget that hits the Render
+   endpoint and shows a native-feeling card widget.
+
+### Priority
+Medium. The data pipeline and daily automation are the foundation. Visual polish
+comes once the data is confirmed reliable for 2+ weeks of live operation.
